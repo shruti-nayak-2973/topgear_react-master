@@ -1,0 +1,55 @@
+
+//this is App.js file 
+import React from "react";
+import propTypes from 'prop-type'; 
+import React, {Component} from 'react';
+
+class Main extends React.Component {
+  render() {
+    return (
+      <>
+        <h2>Props Validation </h2>
+        <h3> Check the warning message on the JS console </h3>
+        <p>Name : {this.props.name}</p>
+        <p>Preferred cities : {this.props.city}</p>
+        <p>Age : {this.props.age}</p>
+
+      </>
+    );
+  }
+}
+
+UserComponent.propTypes = {
+  name : PropTypes.string.isRequired,
+ // city : PropTypes.array,
+  city(props, propName){
+    if(typeof props[propName] !== "array"){
+      return new Error("Cities must in an array");
+    }
+  },
+
+  age(props, propName){
+    if(typeof props[propName] !== "number"){
+      return new Error("Age must be a number");
+    }
+    if (props[propName]>60 || props[propName]<18){
+      return new Error("Age entered is " + props[propName]+ " , it should be between 18 to 60");
+    }
+  }
+};
+
+User.Component.defaultProps= {
+name :"Steve",
+city :"[Bangalore, Chennai]",
+age :18
+}
+export default class App extends React.Component {
+  render() {
+    return (
+      
+      <UserComponent name={18} city={"Pune"} age={80}></UserComponent>
+        
+    );
+  }
+}
+

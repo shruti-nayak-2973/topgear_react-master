@@ -1,0 +1,23 @@
+//this App.js file  
+import React from "react";
+
+class Main extends React.Component {
+  render() {
+    return ( //using props we pass the value 
+      <>
+        <h2>CompanyName= {this.props.man} </h2>
+        <h2>CompanyLocation= {this.props.children}</h2>
+      </>
+    );
+  }
+}
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <>
+        <Main man='"Wipro"'>"Banglore"</Main>
+      </>
+    );
+  }
+}

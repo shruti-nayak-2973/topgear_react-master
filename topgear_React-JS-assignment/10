@@ -1,0 +1,82 @@
+
+//this is index.html
+import React, { Component } from "react";
+import { render } from "react-dom";
+import Hello from "./Hello";
+import "./style.css";
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "Caluclator",
+      maths: 0,
+      bio: 0,
+      chem: 0,
+      phy: 0
+    };
+  }
+
+  onChange = (variable, e) => {
+    let a = e.target.value;
+
+    this.setState({
+      [variable]: parseInt(a)
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Hello name={this.state.name} />
+        <div>
+          <label>Enter Bio Marks</label>
+          <input onChange={e => this.onChange("bio", e)} />
+        </div><br />
+        <div>
+          <label>Enter Maths Marks</label>
+          <input onChange={e => this.onChange("maths", e)} />
+        </div><br />
+        <div>
+          <label>Enter Chemistry Marks</label>
+          <input align="middle" onChange={e => this.onChange("chem", e)} />
+        </div><br />
+        <div>
+          <label>Enter Physics Marks</label>
+          <input onChange={e => this.onChange("phy", e)} />
+        </div>
+        <br />
+        <div
+          style={{
+            backgroundColor: "#616161",
+            width: "80px",
+            color: "#fff",
+            padding: "10px",
+            textAlign: "center",
+            borderRadius: "20px"
+          }}
+          onClick={() =>
+            alert(
+              (this.state.maths +
+                this.state.bio +
+                this.state.chem +
+                this.state.phy) /
+                4
+            )
+          }
+        >
+          Submit
+        </div>
+      </div>
+    );
+  }
+}
+
+
+//this is hello.js file
+import React from 'react';
+
+export default ({ name }) => <h1>Averge {name}!</h1>;
+
+
+render(<App />, document.getElementById("root"));
